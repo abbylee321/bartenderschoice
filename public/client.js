@@ -10,7 +10,6 @@ const button3 = document.getElementById("powdered-sugar");
 
 //Text Output
 const text = document.getElementById('final-drink');
-const text3 = document.getElementById('final-drink2');
 
 //Image Output
 const imageholder= document.getElementById("display-image")
@@ -60,7 +59,7 @@ button3.onclick = async function printSomething3() {
     const response = await fetch("/getsugar");
     const data3 = await response.json();
     console.log(data3[0].strDrink);
-    text3.innerHTML = `Your Drink: ${data3[0].strDrink}`;
+    text.innerHTML = `Your Drink: ${data3[0].strDrink}`;
     imageholder.src = data3[0].strDrinkThumb;
 }
 

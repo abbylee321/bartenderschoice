@@ -40,6 +40,10 @@ Overall, I think it's still taking time to understand the differences between cl
 
 I used "db.insert" to add to the tequila.db database, but commented it out to stop inserts every time I ran the server. Is there a way to stop inserts without commenting it out?
 
+## Final 
+
+My final project will be to expand this cocktail website, so there is more options - aka the base choices would be tequila, vodka, rum, etc. And then users would be to choose from a larger list of ingredients and perhaps also allow the user to choose what glass they want. 
+
 ## Acknowledgements
 
 * CocktailDB (https://www.thecocktaildb.com/)

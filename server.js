@@ -2,71 +2,55 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const app = express(); 
-const Datastore = require('nedb');
+//read in mongoose library
+const mongoose = require("mongoose");
 
+require("dotenv").config();
+const MONGO_URL = process.env.MONGO_URL; 
+
+mongoose.connect(MONGO_URL, {useNewUrlParser: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+//   console.log("Connected to database!");
+});
+
+//helpful for user names, addresses 
+//schema = blueprint, what are the attributes of drink (name, type)
+const DrinkSchema = mongoose.Schema({
+  strDrink: {type: String},
+  strDrinkThumb: {type: String},
+  idDrink: {type: String},
+  strIngredient: {type: String},
+  strCategory: {type: String}
+}); 
+
+//variable that holds access to database
+//Drink is name of DrinkSchema
+ const Drink = mongoose.model("Drink", DrinkSchema);
+
+
+// static file server
 app.use(express.static('public'));
+// if there is a request body, parse it as JSON
 app.use(express.json());
 
-//autoload - don't have to wait for callback function
-const db = new Datastore({filename: "tequila.db", autoload: true});
-db.loadDatabase();
-
-//from the script.js 
-//prints out all pizza toppings with unique ID(see in terminal) and it inserts into toppings.db file 
-const content = fs.readFileSync("drinks.json");
-let drinksObj = JSON.parse(content);
-
-let tequilaDrinks = drinksObj.drinks;  
-//drinksObj is equal to "drinks" in drinks.json file 
-//tequilaDrinks is a JSON array from the drink.json drinks field
-
-//recipe is each JSON entry in tequila drinks
-// tequilaDrinks = tequilaDrinks.map((recipe) => {
-//     return {
-//         popularDrink: 
-//     };
-// }); 
-
-//Run in beginning - Recomment in to create new database 
-// db.insert(tequilaDrinks, (err, docs) =>{
-//     console.log(docs); 
-// }); 
-
-//Get all drinks that have "Tequila" in the strDrink field 
-app.get('/getdrinks', (req, res) => {
-    db.find({strDrink: /Tequila/}, (err,data) => {
-        if (err) {
-            response.end();
-            //get out of here
-            return; 
-        }
-        res.json(data);
-    }); 
+//getalcohol is the route
+//:alcohol is the parameter 
+app.get('/gettotal/:alcohol/:type/:fruit', (req, res) => {
+    // console.log(req.params.alcohol,req.params.type,req.params.fruit)
+    Drink.find({$and: [{strIngredient: new RegExp(req.params.alcohol)}, {strCategory: new RegExp(req.params.type)}, {strIngredient: new RegExp(req.params.fruit)}]}, (err,drinks) => {
+        res.json(drinks);
+        // console.log(drinks);
+    });
 });
 
-//Get all drinks that have "Egg White" in the strDrink field 
-app.get('/getegg', (req, res) => {
-    db.find({strIngredient: /Egg white/}, (err,data) => {
-        if (err) {
-            response.end();
-            //get out of here
-            return; 
-        }
-        res.json(data);
-    }); 
-});
 
-//Get all drinks that have "Powdered sugar" in the strDrink field 
-app.get('/getsugar', (req, res) => {
-    db.find({strIngredient: /Powdered sugar/}, (err,data) => {
-        if (err) {
-            response.end();
-            //get out of here
-            return; 
-        }
-        res.json(data);
-    }); 
-});
+
+//data and URL don't communicate with one another 
+//1. how to pass multiple parameters in URL 
+//2. How to write on the backend to query the database
+
 
 //listening on port 3000
 app.listen(3000, () => {

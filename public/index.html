@@ -5,17 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Drinks Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>What base liquor would you like?</h1>
-    <button id="tequila-button">Tequila</button>
-  <section>
-    <h2>What other ingredient would you like? </h2>
-    <button id="egg-white">Egg White</button>
-    <button id="powdered-sugar">Powdered sugar</button>
-    <section id="final-drink"></section> 
-    <img id="display-image"></img>
+  <span class = "title-span">
+    <div class = "box">
+      <div class = "title">BARTENDER'S CHOICE</div>
+  </div>
+  <hr id = "line-hr"></hr>
+  </span>
+      <div class = "row-1-text">
+      Select your base
+      </div>
+      <div class = "row-1">
+        <input class = "card-bases" type = "radio" name="liquor" id="Tequila">
+          <label class="for-card-bases" for="Tequila">
+              Tequila 
+            </label>
+      <input class = "card-bases" type="radio" name="liquor" id="Vodka">
+        <label class="for-card-bases" for="Vodka">
+          Vodka 
+        </label>
+      <input class = "card-bases" type="radio" name="liquor" id="Gin">
+        <label class="for-card-bases" for="Gin">
+          Gin 
+      </label>
+      <input class = "card-bases" type="radio" name="liquor" id="Rum">
+      <label class="for-card-bases" for="Rum">
+        Rum 
+        </label>
+    </div>
+    </div>
+  </div>
+</div>
+    <div class = "row-1-text">
+    Select a type of cocktail
+  </div>
+    <div class = "row-1">
+    <input class="card-drink" type="radio" name="type" id="Classic">
+      <label class="for-card-drink" for="Classic">
+      Classic 
+    </label>
+    <input class="card-drink" type="radio" name="type" id="Surprise">
+      <label class="for-card-drink" for="Surprise">
+        Surprise</label>
+  </div>
+      <div class = "row-1-text">
+      Select a fruit
+    </div>
+    <div class = "row-1">
+      <input class ="card-lemon" type="radio" name="fruit" id="Lemon">
+      <label class="for-card-lemon" for="Lemon">
+        Lemon 
+        </label>
+      <input class ="card-lime" type="radio" name="fruit" id="Lime">
+      <label class="for-card-lime" for="Lime"> 
+        Lime</label>
+      <input class ="card-orange" type="radio" name="fruit" id="Orange">
+      <label class="for-checkbox-fruit-orange" for="Orange"> 
+        Orange </label>
+    </div>
+<div class = "row-1-text">
+  <div class = "row-submit">
+  <button class="button" type="button" id ="Submit-button">
+    <div class = "text-data">
+      Find My Drink
+    </div>
+    </button>
+    </div>
+<section id="final-drink"></section> 
+  <section id="final-ingredients"></section> 
+      <div id = "name-box" style= 'display: none'></div>
+<div class = "last-row">
+  <img id="display-image" style= 'display: none'></img>
+  <div class = "ingredients-box">
+      <h1 id='show-ingredient-title' style='display: none'>Ingredients </h1>  
+      <ul id="ingredients-list"></ul>
+  </div>
+</div>
     <script src ="client.js"></script>
-  </section>
 </body>
 </html>

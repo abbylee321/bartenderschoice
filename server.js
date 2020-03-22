@@ -37,6 +37,8 @@ app.use(express.json());
 
 //getalcohol is the route
 //:alcohol is the parameter 
+
+
 app.get('/gettotal/:alcohol/:type/:fruit', (req, res) => {
     // console.log(req.params.alcohol,req.params.type,req.params.fruit)
     Drink.find({$and: [{strIngredient: new RegExp(req.params.alcohol)}, {strCategory: new RegExp(req.params.type)}, {strIngredient: new RegExp(req.params.fruit)}]}, (err,drinks) => {
@@ -53,6 +55,13 @@ app.get('/gettotal/:alcohol/:type/:fruit', (req, res) => {
 
 
 //listening on port 3000
-app.listen(3000, () => {
-    console.log("Server listening on http:localhost:3000")
+// app.listen(3000, () => {
+//     console.log("Server listening on http:localhost:3000")
+// });
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Express server listening on port ${port}!`);
 });
+

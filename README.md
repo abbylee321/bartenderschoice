@@ -2,6 +2,8 @@
 
 I wanted to create a simulation of the bartender's choice online. Users select their preferences for a cocktail, and they are given a cocktail that matches that criteria. The preferences are for a liquor base, cocktail type and a fruit. I'm using the open, crowd-sourced database from CocktailDB(https://www.thecocktaildb.com/) for drink information. 
 
+View the live site - (https://bartenders-choice.herokuapp.com/). 
+
 # Technologies 
 * Node.js
 * Express.js
